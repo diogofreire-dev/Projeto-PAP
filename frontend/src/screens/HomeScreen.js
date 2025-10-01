@@ -13,11 +13,11 @@ export default function HomeScreen({ navigation }) {
   const [cloneDescription, setCloneDescription] = useState('');
   
   // Clones guardados (exemplo)
-  const savedClones = [
-    { id: 1, name: 'David', color: '#FFD700' },
-    { id: 2, name: 'Maria', color: '#32CD32' },
-    { id: 3, name: 'João', color: '#FF6347' },
-  ];
+const savedClones = [
+  { id: 1, name: 'David', color: '#FFD700', personality: 'francês, 18 anos, irritante' },
+  { id: 2, name: 'Maria', color: '#32CD32', personality: 'simpática, 20 anos, portuguesa' },
+  { id: 3, name: 'João', color: '#FF6347', personality: 'engraçado, 25 anos, brasileiro' },
+];
 
   const handleCreateClone = () => {
     if (cloneDescription.trim()) {
@@ -28,9 +28,9 @@ export default function HomeScreen({ navigation }) {
     }
   };
 
-  const handleClonePress = (clone) => {
-    Alert.alert('Abrir Clone', `Conversar com ${clone.name}`);
-  };
+const handleClonePress = (clone) => {
+  navigation.navigate('Chat', { clone });
+};
 
   return (
     <View style={styles.container}>
