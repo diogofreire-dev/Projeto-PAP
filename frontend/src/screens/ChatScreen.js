@@ -1,3 +1,4 @@
+import AIService from '../services/AIService';
 import React, { useState, useRef, useEffect } from 'react';
 import {
   View,
@@ -36,10 +37,11 @@ export default function ChatScreen({ route, navigation }) {
       setMessage('');
 
       // Simular resposta do clone após 1 segundo
-      setTimeout(() => {
+      setTimeout(async () => {
+        const responseText = await generateCloneResponse(message, clone);
         const cloneResponse = {
           id: (Date.now() + 1).toString(),
-          text: generateCloneResponse(message, clone),
+          text: responseText,
           sender: 'clone',
           timestamp: new Date(),
         };
@@ -47,17 +49,25 @@ export default function ChatScreen({ route, navigation }) {
       }, 1000);
     }
   };
+const generateCloneResponse = async (userMessage, cloneData) => {
+  // Verificar se IA está configurada
+  if (!AIService.isConfigured()) {
+    return 'IA não configurada. Adiciona o token do Hugging Face.';
+  }
 
-  const generateCloneResponse = (userMessage, cloneData) => {
-    // Respostas simples simuladas (depois vamos usar IA real)
-    const responses = [
-      `Interessante pergunta! Como ${cloneData.name}, eu diria que...`,
-      `Hmm, deixa-me pensar sobre isso...`,
-      `Essa é uma boa questão! Na minha perspectiva...`,
-      `Como alguém que é ${cloneData.personality || 'único'}, acho que...`,
-    ];
-    return responses[Math.floor(Math.random() * responses.length)];
-  };
+  try {
+    // Gerar resposta com IA
+    const response = await AIService.generateCloneResponse(
+      cloneData.personality || `${cloneData.name}, clone virtual`,
+      messages,
+      userMessage
+    );
+    return response;
+  } catch (error) {
+    console.error('Erro ao gerar resposta:', error);
+    return 'Desculpa, tive um problema. Tenta novamente.';
+  }
+};
 
   useEffect(() => {
     flatListRef.current?.scrollToEnd();
