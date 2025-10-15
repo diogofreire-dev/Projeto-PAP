@@ -1,3 +1,5 @@
+USE pap_cartao;
+
 CREATE TABLE users (
   id INT AUTO_INCREMENT PRIMARY KEY,
   nome VARCHAR(100) NOT NULL,

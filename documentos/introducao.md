@@ -1,24 +1,24 @@
 # PAP — Semana 1: Planeamento do Projeto
 
-## Objetivo da Semana
+## Objetivo
 Compreender e definir o tema do projeto, o problema, o público-alvo, as funcionalidades e as tecnologias.
 No final da semana, terás a **introdução do relatório da PAP** praticamente pronta.
 
 ---
 
-## Segunda-feira — Definir a Ideia do Projeto
+## Definir a Ideia do Projeto
 
 ### Objetivo
 Perceber exatamente o que é o projeto e criar um resumo inicial.
 
 ### Tarefas
-1. Criar o ficheiro `PAP - Gestão de Cartão de Crédito.md`.
+1. Criar o ficheiro `Relatório-PAP`.
 2. Escrever:
    ```
    Nome do Projeto: Gestão de Cartão de Crédito e Controlo de Gastos  
-   Aluno: [teu nome]  
-   Curso: [teu curso]  
-   Ano letivo: 2025
+   Aluno: Diogo Freire e Jandro Antunes  
+   Curso: Técnico de Informática de Gestão 
+   Ano letivo: 2025/26
    ```
 3. Escrever o **Resumo:**
    > O objetivo deste projeto é desenvolver um site que ajude as pessoas a gerir os seus gastos com cartão de crédito. Muitas pessoas gastam sem perceber o quanto já usaram do limite e acabam em dívida. O sistema permitirá que o utilizador registe as suas compras, veja gráficos com os gastos e receba alertas quando estiver a ultrapassar o limite.
@@ -31,7 +31,7 @@ Perceber exatamente o que é o projeto e criar um resumo inicial.
 
 ---
 
-## Terça-feira — Público-Alvo e Objetivos
+## Público-Alvo e Objetivos
 
 ### Objetivo
 Definir para quem o sistema é feito e o que ele faz.
@@ -51,7 +51,7 @@ Definir para quem o sistema é feito e o que ele faz.
 
 ---
 
-## Quarta-feira — Funcionalidades e Requisitos
+## Funcionalidades e Requisitos
 
 ### Funcionalidades
 - Login de utilizador  
@@ -74,7 +74,7 @@ Definir para quem o sistema é feito e o que ele faz.
 
 ---
 
-## Quinta-feira — Tecnologias e Planeamento
+## Tecnologias e Planeamento
 
 ### Tecnologias
 - **Linguagem:** Python  
@@ -83,19 +83,19 @@ Definir para quem o sistema é feito e o que ele faz.
 - **Frontend:** HTML, CSS, JavaScript, Bootstrap  
 - **Gráficos:** Chart.js  
 
-### Planeamento Geral (8 meses)
+### Planeamento Geral Para Realização da PAP
 1. Planeamento e Introdução  
 2. Base de Dados  
 3. Consultas SQL  
-4. Desenvolvimento Backend  
-5. Interface Web  
+4. Desenvolvimento Backend (Muito provavelmente Python)
+5. Interface Web (Html e Css), será desenvolvido aos poucos desde o inicio  
 6. Testes  
 7. Relatório Final  
-8. Apresentação
+8. Apresentação (Preparar)
 
 ---
 
-## Sexta-feira — Revisão e Introdução Final
+## Revisão e Introdução Final
 
 ### Objetivo
 Reunir tudo e escrever a introdução final para o relatório.
@@ -114,7 +114,7 @@ Reunir tudo e escrever a introdução final para o relatório.
 
 ---
 
-## Sábado (opcional) — Organização
+## Organização
 - Criar pasta `PAP_GestaoCartao`:
   ```
   /documentos
@@ -126,6 +126,6 @@ Reunir tudo e escrever a introdução final para o relatório.
 
 ---
 
-## Resultado Final da Semana 1
+## Resultado Final (introdução)
 - Introdução da PAP escrita e organizada.
 - Documento Markdown pronto para ser usado no relatório.
