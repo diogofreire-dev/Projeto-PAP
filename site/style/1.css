@@ -1,0 +1,19 @@
+body {
+    background: #394146;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+a.menu{
+    display: block;
+    color: rgb(70, 115, 136);
+    text-decoration: none; 
+    font-size: 20px;
+    font-weight: 600;
+    margin: 28px 0;
+    padding: 12px;
+    text-align: center;
+    border: 2px solid rgb(70, 115, 136);
+    border-radius: 8px; 
+}
