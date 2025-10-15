@@ -1,0 +1,24 @@
+html,body{height:100%;margin:0}
+body{
+    background:#263238; /* dark slate */
+    color:#ffffff;
+    font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+.wrap{width:280px;padding:24px 8px}
+a.menu{
+    display:block;
+    color:#0b3dff;
+    text-decoration:underline;
+    font-size:20px;
+    margin:28px 0;
+    text-align:center;
+}
+a.back{
+    display:block;color:#0b3dff;
+    text-decoration:underline;
+    margin-top:40px;
+    text-align:center
+}
