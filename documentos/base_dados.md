@@ -53,6 +53,7 @@ Table users {
   nome varchar
   email varchar
   password_hash varchar
+  created_at timestamp
 }
 
 Table cards {
@@ -60,15 +61,18 @@ Table cards {
   user_id int [ref: > users.id]
   nome_cartao varchar
   limite decimal
+  created_at timestamp
 }
 
 Table transactions {
   id int [pk]
   card_id int [ref: > cards.id]
+  user_id int [ref: > users.id]
   valor decimal
   categoria varchar
   descricao varchar
   data date
+  created_at timestamp
 }
 ```
 
@@ -82,21 +86,24 @@ Table transactions {
 ## Primeiros Comandos SQL
 
 ### Ferramenta
-  DB Browser for SQLite — [https://sqlitebrowser.org/](https://sqlitebrowser.org/)
+  MySQL Workbench ou phpMyAdmin — [https://www.mysql.com/products/workbench/](https://www.mysql.com/products/workbench/)
 
 ### Tarefas
-1. Criar base `pap_cartao.db`
+1. Criar base `pap_cartao`
 2. Executar:
 ```sql
+USE pap_cartao;
+
 CREATE TABLE users (
-  id INTEGER PRIMARY KEY,
-  nome TEXT,
-  email TEXT,
-  password_hash TEXT
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nome VARCHAR(100) NOT NULL,
+  email VARCHAR(100) UNIQUE NOT NULL,
+  password_hash VARCHAR(255) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 INSERT INTO users (nome, email, password_hash)
-VALUES ('João', 'joao@email.com', '123');
+VALUES ('João Silva', 'joao@email.com', 'hash123');
 
 SELECT * FROM users;
 ```
@@ -110,42 +117,56 @@ SELECT * FROM users;
 
 ### Código SQL
 ```sql
+USE pap_cartao;
+
 CREATE TABLE users (
-  id INTEGER PRIMARY KEY,
-  nome TEXT,
-  email TEXT,
-  password_hash TEXT
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nome VARCHAR(100) NOT NULL,
+  email VARCHAR(100) UNIQUE NOT NULL,
+  password_hash VARCHAR(255) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE cards (
-  id INTEGER PRIMARY KEY,
-  user_id INTEGER,
-  nome_cartao TEXT,
-  limite DECIMAL,
-  FOREIGN KEY (user_id) REFERENCES users(id)
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT NOT NULL,
+  nome_cartao VARCHAR(100),
+  limite DECIMAL(10, 2) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
 CREATE TABLE transactions (
-  id INTEGER PRIMARY KEY,
-  card_id INTEGER,
-  valor DECIMAL,
-  categoria TEXT,
-  descricao TEXT,
-  data DATE,
-  FOREIGN KEY (card_id) REFERENCES cards(id)
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  card_id INT NOT NULL,
+  user_id INT NOT NULL,
+  valor DECIMAL(10, 2) NOT NULL,
+  categoria VARCHAR(100),
+  descricao VARCHAR(255),
+  data DATE NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (card_id) REFERENCES cards(id) ON DELETE CASCADE,
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 ```
 
 ### Inserir Dados de Teste
 ```sql
 INSERT INTO users (nome, email, password_hash)
-VALUES ('João', 'joao@email.com', '123');
+VALUES 
+  ('João Silva', 'joao@email.com', 'hash123'),
+  ('Maria Santos', 'maria@email.com', 'hash456');
 
 INSERT INTO cards (user_id, nome_cartao, limite)
-VALUES (1, 'Visa João', 1000);
+VALUES 
+  (1, 'Visa João', 1000),
+  (2, 'Mastercard Maria', 800);
 
-INSERT INTO transactions (card_id, valor, categoria, descricao, data)
-VALUES (1, 50, 'Alimentação', 'Supermercado', '2025-10-10');
+INSERT INTO transactions (card_id, user_id, valor, categoria, descricao, data)
+VALUES 
+  (1, 1, 50, 'Alimentação', 'Supermercado', '2025-10-10'),
+  (1, 1, 25, 'Transporte', 'Uber', '2025-10-11'),
+  (2, 2, 30, 'Alimentação', 'Restaurante', '2025-10-10');
 ```
 
 ### Consultar
@@ -157,7 +178,7 @@ SELECT * FROM transactions;
 
 ## Revisão
 
-- Fazer backup do ficheiro `pap_cartao.db`.
+- Fazer backup da base de dados `pap_cartao`.
 - Tirar prints das tabelas e do diagrama.
 - Escrever no relatório:
   - “3. Modelagem da Base de Dados”

@@ -21,7 +21,7 @@ Perceber exatamente o que é o projeto e criar um resumo inicial.
    Ano letivo: 2025/26
    ```
 3. Escrever o **Resumo:**
-   > O objetivo deste projeto é desenvolver um site que ajude as pessoas a gerir os seus gastos com cartão de crédito. Muitas pessoas gastam sem perceber o quanto já usaram do limite e acabam em dívida. O sistema permitirá que o utilizador registe as suas compras, veja gráficos com os gastos e receba alertas quando estiver a ultrapassar o limite.
+   > O objetivo deste projeto é desenvolver uma aplicação web que ajude os utilizadores a gerir os seus gastos com cartão de crédito de forma eficaz. Muitas pessoas realizam compras impulsivas sem controlar o limite disponível, o que pode levar a dívidas indesejadas. O sistema permitirá registar transações, visualizar relatórios gráficos dos gastos por categoria e período, e receber alertas automáticos quando o limite estiver prestes a ser ultrapassado, promovendo uma gestão financeira responsável.
 
 4. **Problema Identificado:**
    > As pessoas perdem o controlo dos gastos, especialmente com cartões de crédito. As compras são rápidas e convenientes, mas o acompanhamento do limite é muitas vezes esquecido.
@@ -79,19 +79,20 @@ Definir para quem o sistema é feito e o que ele faz.
 ### Tecnologias
 - **Linguagem:** Python  
 - **Framework:** Flask  
-- **Base de Dados:** SQLite  
+- **Base de Dados:** MySQL (para maior escalabilidade e funcionalidades avançadas em comparação com SQLite)  
 - **Frontend:** HTML, CSS, JavaScript, Bootstrap  
-- **Gráficos:** Chart.js  
+- **Gráficos:** Chart.js
 
 ### Planeamento Geral Para Realização da PAP
 1. Planeamento e Introdução  
-2. Base de Dados  
-3. Consultas SQL  
-4. Desenvolvimento Backend (Muito provavelmente Python)
-5. Interface Web (Html e Css), será desenvolvido aos poucos desde o inicio  
-6. Testes  
-7. Relatório Final  
-8. Apresentação (Preparar)
+2. Modelagem e Criação da Base de Dados (MySQL)  
+3. Consultas SQL e Manipulação de Dados  
+4. Desenvolvimento Backend com Python e Flask  
+5. Desenvolvimento da Interface Web (HTML, CSS, JavaScript, Bootstrap) — incremental desde o início  
+6. Implementação de Gráficos com Chart.js  
+7. Testes e Validação  
+8. Relatório Final  
+9. Preparação da Apresentação
 
 ---
 
