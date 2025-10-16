@@ -1,17 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="style/1.css">
-    <title>Document</title>
+    <title>Menu Sidebar</title>
 </head>
 <body>
-    <div class="wrap">
-        <a href="pagina2.html" class="menu">
-            <i class="fa-solid fa-coins"></i> Gestão Financeira
-        </a>
+    <div class="sidebar">
+    <div class="sidebar-header">
+    <div class="user-profile">
+    <div class="avatar">
+    <i class="fas fa-user"></i>
     </div>
+        <p>Diogo Freire</p>
+    </div>
+</div>
+
+<nav class="menu">
+    <a href="pagina2.html" class="menu-item">
+        <i class="fas fa-home"></i>
+        <span>Gestaão e finanças</span>
+    </a>
+    <a href="#" class="menu-item">
+        <i class="fas fa-bell"></i>
+        <span>Notificações</span>
+    </a>
+    <a href="#" class="menu-item">
+        <i class="fas fa-lock"></i>
+        <span>Login/Segurança</span>
+    </a>
+    <a href="#" class="menu-item">
+        <i class="fas fa-info-circle"></i>
+        <span>Sobre nós</span>
+    </a>
+</nav>
+
+<div class="sidebar-footer">
+    <button class="settings-btn">
+    <i class="fas fa-cog"></i>
+        </button>
+    </div>
+</div>
 </body>
 </html>

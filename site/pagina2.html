@@ -1,78 +1,112 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Menu Financeiro com Gráfico</title>
-<link rel="stylesheet" href="style/2.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<!-- Chart.js -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="style/2.css">
+    <title>Menu Financeiro com Gráfico</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+  <div class="wrap">
+  <div class="sidebar-header">
+  <div class="user-profile">
+  <div class="avatar">
+  <i class="fas fa-user"></i>
 
-<div class="wrap">
-    <a href="#" class="menu" id="menu-finance"><i class="fa-solid fa-coins"></i> Gestão Financeira</a>
-    <a href="#" class="menu"><i class="fa-solid fa-chart-pie"></i> Orçamento</a>
-    <a href="#" class="menu"><i class="fa-solid fa-wallet"></i> Controle de Gastos</a>
-    <a href="#" class="menu"><i class="fa-solid fa-arrow-trend-up"></i> Fluxo de Caixa</a>
-    <a href="pagina1.html" class="menu"><i class="fa-solid fa-arrow-left"></i> Voltar ao Painel</a>
 </div>
+  <p>Diogo Freire</p>
+  </div>
 
-<!-- Conteúdo Financeiro -->
-<div class="content" id="financeContent" style="display:none; max-width:600px; margin:20px auto; text-align:center;">
-    <h3>Resumo das Finanças</h3>
-    <div style="display:flex; justify-content:center;">
-        <canvas id="financeChart" width="500" height="400"></canvas>
+</div>
+  <nav class="menu">
+    <a href="#" class="menu-item" id="menu-finance">
+    <i class="fa-solid fa-coins"></i>
+      <span>Gestão Financeira</span>
+    </a>
+    <a href="#" class="menu-item">
+    <i class="fa-solid fa-chart-pie"></i>
+      <span>Orçamento</span>
+    </a>
+    <a href="#" class="menu-item">
+    <i class="fa-solid fa-wallet"></i>
+      <span>Controle Financeiro</span>
+    </a>
+    <a href="#" class="menu-item">
+    <i class="fa-solid fa-arrow-trend-up"></i>
+      <span>Fluxo de Caixa</span>
+    </a>
+    <a href="pagina1.html" class="menu-item">
+    <i class="fa-solid fa-arrow-left"></i>
+      <span>Voltar ao Painel</span>
+    </a>
+</nav>
+  <div class="sidebar-footer">
+  <button class="settings-btn">
+  <i class="fas fa-cog"></i>
+      </button>
     </div>
 </div>
 
-<script>
-const menuFinance = document.getElementById('menu-finance');
-const financeContent = document.getElementById('financeContent');
+  <div class="content" id="financeContent" style="display:none; max-width:600px; margin:20px auto; text-align:center; margin-left:220px;">
+      <h3>Resumo das Finanças</h3>
+    <div style="display:flex; justify-content:center;">
+    <canvas id="financeChart" width="500" height="400"></canvas>
+  </div>
+</div>
 
-menuFinance.addEventListener('click', async function(e) {
-e.preventDefault();
-  if (financeContent.style.display === 'block') {
-    financeContent.style.display = 'none';
-  } else {
-    financeContent.style.display = 'block';
-    financeContent.scrollIntoView({ behavior: 'smooth' });
-  if (!window.financeChartCreated) {
+<script>
+  const menuFinance = document.getElementById('menu-finance');
+  const financeContent = document.getElementById('financeContent')
+  menuFinance.addEventListener('click', async function(e) {
+    e.preventDefault();
+    if (financeContent.style.display === 'block') {
+        financeContent.style.display = 'none';
+    } else {
+        financeContent.style.display = 'block';
+        financeContent.scrollIntoView({ behavior: 'smooth' });
+    if (!window.financeChartCreated) {
     try {
     const response = await fetch('api/financas.php');
     const result = await response.json();
-  if (result.error) {
-    console.error(result.error);
+    if (result.error) {
+        console.error(result.error);
     return;
-}
-const ctx = document.getElementById('financeChart').getContext('2d');
-  new Chart(ctx, {
-    type: 'pie',
-    data: {
+      }
+    const ctx = document.getElementById('financeChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'pie',
+      data: {
       labels: result.labels,
       datasets: [{
       label: 'Gastos por Categoria (R$)',
       data: result.data,
-      backgroundColor: ['#4e73df','#1cc88a','#36b9cc','#f6c23e','#e74a3b','#858796','#fd7e14']
-  }]
-},
-options: {
-  responsive: true,
-  plugins: {
-    legend: { position: 'bottom' },
-    title: { display: true, text: 'Resumo dos Gastos por Categoria' }
+      backgroundColor: [
+      '#4e73df',
+      '#1cc88a',
+      '#36b9cc',
+      '#f6c23e',
+      '#e74a3b',
+      '#858796',
+      '#fd7e14']}]
+    },
+      options: {
+      responsive: true,
+      plugins: {
+      legend: { position: 'bottom' },
+      title: { display: true, text: 'Resumo dos Gastos por Categoria' }
+      }
     }
-  }
-});
-window.financeChartCreated = true;
-} 
-catch (error) {console.error('Erro ao carregar dados do banco:', error);
+        });
+        window.financeChartCreated = true;
+    } 
+    catch (error) {
+        console.error('Erro ao carregar dados do banco:', error);
       }
     }
   }
 });
 </script>
-
 </body>
 </html>
