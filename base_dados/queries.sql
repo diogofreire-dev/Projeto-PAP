@@ -4,6 +4,7 @@ SELECT * FROM cards;
 
 SELECT * FROM transactions;
 
+'''
 SELECT u.nome, c.nome_cartao, t.valor, t.categoria, t.data
 FROM transactions t
 JOIN cards c ON t.card_id = c.id
@@ -19,3 +20,30 @@ SELECT c.nome_cartao, c.limite, SUM(t.valor) as gasto_total,
 FROM cards c
 LEFT JOIN transactions t ON c.id = t.card_id
 GROUP BY c.id;
+'''
+
+# Calcular o total gasto num cartão
+SELECT SUM(valor) AS total_gasto
+    FROM transactions
+    WHERE card_id = 1;
+
+# Contar quantas transações existem
+SELECT COUNT(*) AS total_transacoes
+    FROM transactions
+    WHERE card_id = 1;
+
+# Ver gasto médio
+SELECT AVG(valor) AS gasto_medio
+    FROM transactions
+    WHERE card_id = 1;
+
+# Ver a transação mais cara
+SELECT MAX(valor) AS gasto_maximo
+    FROM transactions
+    WHERE card_id = 1;
+
+# Ver a transação mais barata
+SELECT MIN(valor) AS gasto_minimo
+    FROM transactions
+    WHERE card_id = 1;
+
