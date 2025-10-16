@@ -45,3 +45,5 @@ VALUES
   (1, 1, 50, 'Alimentação', 'Supermercado', '2025-10-10'),
   (1, 1, 25, 'Transporte', 'Uber', '2025-10-11'),
   (2, 2, 30, 'Alimentação', 'Restaurante', '2025-10-10');
+
+SELECT categoria, SUM(valor) FROM transactions WHERE user_id = 1 GROUP BY categoria;
