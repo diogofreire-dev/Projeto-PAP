@@ -47,3 +47,26 @@ SELECT MIN(valor) AS gasto_minimo
     FROM transactions
     WHERE card_id = 1;
 
+# Toltal gasto por categoria
+SELECT categoria, SUM(valor) AS total_gasto
+    FROM transactions
+    WHERE card_id = 1
+    GROUP BY categoria;
+
+# Quantidade de transações por categoria
+SELECT categoria, COUNT(*) AS quantidade
+    FROM transactions
+    WHERE card_id = 1
+    GROUP BY categoria
+    ORDER BY quantidade DESC;
+
+# Média de gato por categoria
+SELECT categoria, AVG(valor) AS media, COUNT(*) AS quantidade
+    FROM transactions
+    WHERE card_id = 1
+    GROUP BY categoria;
+
+# Ver todas as categorias usadas
+SELECT DISTINCT categoria
+    FROM transactions
+    WHERE card_id = 1;
