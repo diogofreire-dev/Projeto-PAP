@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="style/4.css">
+    <title>Login e Segurança</title>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <div class="user-profile">
+                <div class="avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <p>Diogo Freire</p>
+            </div>
+        </div>
+
+        <nav class="menu">
+            <a href="gestao_e_financas2.html" class="menu-item">
+                <i class="fas fa-home"></i>
+                <span>Gestão e Finanças</span>
+            </a>
+            <a href="notificacoes.html" class="menu-item" id="menu-notifications">
+                <i class="fas fa-bell"></i>
+                <span>Notificações</span>
+                <span class="notification-badge">3</span>
+            </a>
+            <a href="#" class="menu-item active">
+                <i class="fas fa-lock"></i>
+                <span>Login/Segurança</span>
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fas fa-info-circle"></i>
+                <span>Sobre nós</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <button class="settings-btn">
+                <i class="fas fa-cog"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Conteúdo Principal -->
+    <div class="content-wrapper">
+        <h1>Login e Segurança</h1>
+        <p>Gerencie suas credenciais de acesso e configure as opções de segurança da sua conta.</p>
+
+        <div class="security-container">
+            <!-- Seção 1: Alterar Senha -->
+            <div class="security-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-key"></i> Alterar Senha</h2>
+                    <button class="toggle-btn" onclick="toggleSection(this)">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                </div>
+                <div class="section-content" style="display: none;">
+                    <form class="security-form">
+                        <div class="form-group">
+                            <label>Senha Atual</label>
+                            <div class="input-group">
+                                <input type="password" placeholder="Digite sua senha atual" class="password-input">
+                                <button type="button" class="toggle-password-btn" onclick="togglePassword(this)">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Nova Senha</label>
+                            <div class="input-group">
+                                <input type="password" placeholder="Digite sua nova senha" class="password-input">
+                                <button type="button" class="toggle-password-btn" onclick="togglePassword(this)">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <small>Mínimo 8 caracteres, incluindo letras, números e símbolos</small>
+                        </div>
+                        <div class="form-group">
+                            <label>Confirmar Nova Senha</label>
+                            <div class="input-group">
+                                <input type="password" placeholder="Confirme sua nova senha" class="password-input">
+                                <button type="button" class="toggle-password-btn" onclick="togglePassword(this)">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Atualizar Senha</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Seção 2: Autenticação em Duas Etapas -->
+            <div class="security-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-shield-alt"></i> Autenticação em Duas Etapas</h2>
+                    <button class="toggle-btn" onclick="toggleSection(this)">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                </div>
+                <div class="section-content" style="display: none;">
+                    <div class="security-info">
+                        <p>A autenticação em duas etapas oferece uma camada extra de proteção à sua conta.</p>
+                        <div class="status-box">
+                            <span class="status-indicator inactive"></span>
+                            <span class="status-text">Desativada</span>
+                        </div>
+                    </div>
+                    <div class="setup-steps">
+                        <h3>Como ativar:</h3>
+                        <ol>
+                            <li>Baixe um aplicativo autenticador (Google Authenticator, Authy, etc.)</li>
+                            <li>Escaneie o código QR abaixo</li>
+                            <li>Insira o código gerado para confirmar</li>
+                        </ol>
+                    </div>
+                    <div class="qr-code">
+                        <i class="fas fa-qrcode"></i>
+                        <p>QR Code será exibido aqui</p>
+                    </div>
+                    <button class="btn btn-success" onclick="showConfirmation()">Ativar Autenticação</button>
+                </div>
+            </div>
+
+            <!-- Seção 3: Dispositivos Conectados -->
+            <div class="security-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-laptop"></i> Dispositivos Conectados</h2>
+                    <button class="toggle-btn" onclick="toggleSection(this)">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                </div>
+                <div class="section-content" style="display: none;">
+                    <div class="device-list">
+                        <div class="device-item current">
+                            <div class="device-info">
+                                <div class="device-icon">
+                                    <i class="fas fa-laptop"></i>
+                                </div>
+                                <div class="device-details">
+                                    <h3>Windows - Chrome</h3>
+                                    <p>Último acesso: Hoje às 10:30</p>
+                                    <span class="device-badge">Este dispositivo</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="device-item">
+                            <div class="device-info">
+                                <div class="device-icon">
+                                    <i class="fas fa-mobile-alt"></i>
+                                </div>
+                                <div class="device-details">
+                                    <h3>iPhone - Safari</h3>
+                                    <p>Último acesso: Ontem às 15:45</p>
+                                </div>
+                            </div>
+                            <button class="btn btn-danger btn-small" onclick="removeDevice(this)">Desconectar</button>
+                        </div>
+
+                        <div class="device-item">
+                            <div class="device-info">
+                                <div class="device-icon">
+                                    <i class="fas fa-tablet-alt"></i>
+                                </div>
+                                <div class="device-details">
+                                    <h3>iPad - Firefox</h3>
+                                    <p>Último acesso: Há 3 dias</p>
+                                </div>
+                            </div>
+                            <button class="btn btn-danger btn-small" onclick="removeDevice(this)">Desconectar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Seção 4: Atividade de Login -->
+            <div class="security-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-history"></i> Atividade de Login</h2>
+                    <button class="toggle-btn" onclick="toggleSection(this)">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                </div>
+                <div class="section-content" style="display: none;">
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <div class="activity-time">Hoje às 10:30</div>
+                            <div class="activity-details">
+                                <p><strong>Login bem-sucedido</strong></p>
+                                <small>Windows - Chrome - IP: 192.168.1.1</small>
+                            </div>
+                            <span class="activity-badge success">✓</span>
+                        </div>
+
+                        <div class="activity-item">
+                            <div class="activity-time">Ontem às 15:45</div>
+                            <div class="activity-details">
+                                <p><strong>Login bem-sucedido</strong></p>
+                                <small>iPhone - Safari - IP: 192.168.1.50</small>
+                            </div>
+                            <span class="activity-badge success">✓</span>
+                        </div>
+
+                        <div class="activity-item">
+                            <div class="activity-time">Há 2 dias às 09:15</div>
+                            <div class="activity-details">
+                                <p><strong>Tentativa de login falhada</strong></p>
+                                <small>Senha incorreta - IP: 185.220.100.45</small>
+                            </div>
+                            <span class="activity-badge danger">✗</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Seção 5: Dados Pessoais -->
+            <div class="security-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-user-circle"></i> Dados Pessoais</h2>
+                    <button class="toggle-btn" onclick="toggleSection(this)">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                </div>
+                <div class="section-content" style="display: none;">
+                    <form class="security-form">
+                        <div class="form-group">
+                            <label>Nome Completo</label>
+                            <input type="text" value="Diogo Freire" placeholder="Digite seu nome completo">
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" value="diogo@email.com" placeholder="Digite seu email">
+                        </div>
+                        <div class="form-group">
+                            <label>Telefone</label>
+                            <input type="tel" value="+351 912 345 678" placeholder="Digite seu telefone">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleSection(btn) {
+            const content = btn.parentElement.nextElementSibling;
+            content.style.display = content.style.display === 'none' ? 'block' : 'none';
+            btn.classList.toggle('active');
+        }
+
+        function togglePassword(btn) {
+            const input = btn.previousElementSibling;
+            const isPassword = input.type === 'password';
+            input.type = isPassword ? 'text' : 'password';
+            btn.innerHTML = isPassword ? '<i class="fas fa-eye-slash"></i>' : '<i class="fas fa-eye"></i>';
+        }
+
+        function removeDevice(btn) {
+            const device = btn.closest('.device-item');
+            device.style.animation = 'slideOut 0.3s ease';
+            setTimeout(() => {
+                device.remove();
+            }, 300);
+        }
+
+        function showConfirmation() {
+            alert('Código QR enviado! Escaneie com seu aplicativo autenticador.');
+        }
+
+        // Abrir primeira seção por padrão
+        window.addEventListener('load', function() {
+            const firstSection = document.querySelector('.section-header');
+            if (firstSection) {
+                const btn = firstSection.querySelector('.toggle-btn');
+                const content = firstSection.nextElementSibling;
+                content.style.display = 'block';
+                btn.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>
