@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="style/3.css">
+    <title>Menu Sidebar</title>
+</head>
+<body>
+    <div class="sidebar">
+    <div class="sidebar-header">
+    <div class="user-profile">
+    <div class="avatar">
+    <i class="fas fa-user"></i>
+    </div>
+        <p>Diogo Freire</p>
+    </div>
+</div>
+    <nav class="menu">
+    <a href="gestao_e_financas2.html" class="menu-item">
+    <i class="fas fa-home"></i>
+        <span>Gestão e Finanças</span>
+    </a>
+    <a href="#" class="menu-item" id="menu-notifications">
+    <i class="fas fa-bell"></i>
+        <span>Notificações</span>
+    <span class="notification-badge">3</span>
+    </a>
+    <a href="#" class="menu-item">
+    <i class="fas fa-lock"></i>
+        <span>Login/Segurança</span>
+    </a>
+    <a href="#" class="menu-item">
+    <i class="fas fa-info-circle"></i>
+        <span>Sobre nós</span>
+    </a>
+</nav>
+    <div class="sidebar-footer">
+    <button class="settings-btn">
+    <i class="fas fa-cog"></i>
+        </button>
+    </div>
+</div>
+
+    <!-- Área de Notificações -->
+    <div class="notifications-container" id="notificationsContainer">
+    <div class="notifications-header">
+        <h3>Notificações</h3>
+    <button class="close-btn" id="closeNotifications">
+    <i class="fas fa-times"></i>
+    </button>
+</div>
+
+    <div class="notifications-content">
+    <div class="notification-item">
+    <div class="notification-icon warning">
+    <i class="fas fa-exclamation-triangle"></i>
+    </div>
+    <div class="notification-text">
+        <h4>Limite de Crédito Atingido</h4>
+        <p>Seu cartão Visa atingiu 95% do limite disponível.</p>
+    <span class="notification-time">há 2 horas</span>
+    </div>
+    <button class="notification-close" onclick="removeNotification(this)">
+    <i class="fas fa-times"></i>
+    </button>
+</div>
+
+    <div class="notification-item">
+    <div class="notification-icon success">
+    <i class="fas fa-check-circle"></i>
+    </div>
+    <div class="notification-text">
+        <h4>Transação Confirmada</h4>
+        <p>Compra no valor de R$ 150,00 foi confirmada com sucesso.</p>
+    <span class="notification-time">há 5 horas</span>
+    </div>
+    <button class="notification-close" onclick="removeNotification(this)">
+    <i class="fas fa-times"></i>
+    </button>
+</div>
+
+    <div class="notification-item">
+    <div class="notification-icon info">
+    <i class="fas fa-info-circle"></i>
+    </div>
+    <div class="notification-text">
+        <h4>Resumo Mensal Disponível</h4>
+        <p>Seu extrato de gastos de outubro está pronto para visualizar.</p>
+        <span class="notification-time">há 1 dia</span>
+    </div>
+    <button class="notification-close" onclick="removeNotification(this)">
+    <i class="fas fa-times"></i>
+        </button>
+    </div>
+</div>
+
+    <div class="notifications-footer">
+    <a href="#">Ver todas as notificações</a>
+    </div>
+</div>
+
+<!-- Overlay para fechar notificações -->
+<div class="notifications-overlay" id="notificationsOverlay"></div>
+
+<script>
+    const menuNotifications = document.getElementById('menu-notifications');
+    const notificationsContainer = document.getElementById('notificationsContainer');
+    const closeNotifications = document.getElementById('closeNotifications');
+    const notificationsOverlay = document.getElementById('notificationsOverlay');
+
+    // Abrir notificações
+    menuNotifications.addEventListener('click', function(e) {
+        e.preventDefault();
+        notificationsContainer.classList.toggle('active');
+        notificationsOverlay.classList.toggle('active');
+    });
+
+    // Fechar notificações
+    closeNotifications.addEventListener('click', function() {
+        notificationsContainer.classList.remove('active');
+        notificationsOverlay.classList.remove('active');
+    });
+
+    // Fechar ao clicar no overlay
+    notificationsOverlay.addEventListener('click', function() {
+        notificationsContainer.classList.remove('active');
+        notificationsOverlay.classList.remove('active');
+    });
+
+    // Remover notificação
+    function removeNotification(btn) {
+        const item = btn.closest('.notification-item');
+        item.style.animation = 'slideOut 0.3s ease';
+        setTimeout(() => {
+            item.remove();
+            updateBadge();
+        }, 300);
+    }
+
+    // Atualizar badge
+    function updateBadge() {
+        const items = document.querySelectorAll('.notification-item').length;
+        const badge = document.querySelector('.notification-badge');
+        if (items > 0) {
+            badge.textContent = items;
+        } else {
+            badge.style.display = 'none';
+        }
+    }
+</script>
+</body>
+</html>
