@@ -77,7 +77,7 @@ Definir para quem o sistema é feito e o que ele faz.
 ## Tecnologias e Planeamento
 
 ### Tecnologias
-- **Linguagem:** PHP
+- **Linguagens:** PHP e JavaScript
 - **Base de Dados:** MySQL (para maior escalabilidade e funcionalidades avançadas em comparação com SQLite)  
 - **Frontend:** HTML, CSS, JavaScript, Bootstrap  
 - **Gráficos:** Chart.js
