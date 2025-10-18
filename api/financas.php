@@ -1,43 +1,17 @@
 <?php
+require_once 'config.php';
 header('Content-Type: application/json; charset=UTF-8');
 
 try {
-    // Conexão com o banco de dados
-    $host = "localhost";
-    $user = "root";
-    $pass = "";
-    $dbname = "pap_cartao";
+    $user_id = checkAuth();
+    $conn = getConnection();
     
-    $conn = new mysqli($host, $user, $pass, $dbname);
-    
-    if ($conn->connect_error) {
-        throw new Exception("Erro na conexão: " . $conn->connect_error);
-    }
-    
-    // ID do usuário
-    $user_id = 1;
-    
-    // Consulta total gasto por categoria
-    $sql = "
-        SELECT categoria, SUM(valor) AS total
-        FROM transactions
-        WHERE user_id = ?
-        GROUP BY categoria
-    ";
-    
+    $sql = "SELECT categoria, SUM(valor) AS total FROM transactions WHERE user_id = ? GROUP BY categoria";
     $stmt = $conn->prepare($sql);
-    
-    if (!$stmt) {
-        throw new Exception("Erro ao preparar a query: " . $conn->error);
-    }
-    
     $stmt->bind_param("i", $user_id);
-    
-    if (!$stmt->execute()) {
-        throw new Exception("Erro ao executar a query: " . $stmt->error);
-    }
-    
+    $stmt->execute();
     $result = $stmt->get_result();
+    
     $labels = [];
     $data = [];
     
@@ -46,19 +20,9 @@ try {
         $data[] = (float)$row['total'];
     }
     
-    echo json_encode([
-        "labels" => $labels,
-        "data" => $data,
-        "success" => true
-    ]);
-    
-    $stmt->close();
-    $conn->close();
+    sendSuccess(["labels" => $labels, "data" => $data]);
     
 } catch (Exception $e) {
-    http_response_code(500);
-        echo json_encode([
-        "error" => $e->getMessage(),
-        "success" => false
-    ]);
+    sendError($e->getMessage(), 500);
 }
+?>
