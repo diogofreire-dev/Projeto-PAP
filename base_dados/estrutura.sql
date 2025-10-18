@@ -1,5 +1,11 @@
 USE pap_cartao;
 
+-- Apagar tabelas antigas (se existirem)
+DROP TABLE IF EXISTS transactions;
+DROP TABLE IF EXISTS cards;
+DROP TABLE IF EXISTS users;
+
+-- Criar tabelas
 CREATE TABLE users (
   id INT AUTO_INCREMENT PRIMARY KEY,
   nome VARCHAR(100) NOT NULL,
@@ -30,20 +36,16 @@ CREATE TABLE transactions (
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
-INSERT INTO users (nome, email, password_hash)
-VALUES 
-  ('João Silva', 'joao@email.com', 'hash123'),
-  ('Maria Santos', 'maria@email.com', 'hash456');
+-- DADOS DE TESTE (Senha para todos: teste123)
+INSERT INTO users (nome, email, password_hash) VALUES 
+  ('João Silva', 'joao@email.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'),
+  ('Maria Santos', 'maria@email.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi');
 
-INSERT INTO cards (user_id, nome_cartao, limite)
-VALUES 
-  (1, 'Visa João', 1000),
-  (2, 'Mastercard Maria', 800);
+INSERT INTO cards (user_id, nome_cartao, limite) VALUES 
+  (1, 'Visa João', 1000.00),
+  (2, 'Mastercard Maria', 800.00);
 
-INSERT INTO transactions (card_id, user_id, valor, categoria, descricao, data)
-VALUES 
-  (1, 1, 50, 'Alimentação', 'Supermercado', '2025-10-10'),
-  (1, 1, 25, 'Transporte', 'Uber', '2025-10-11'),
-  (2, 2, 30, 'Alimentação', 'Restaurante', '2025-10-10');
-
-SELECT categoria, SUM(valor) FROM transactions WHERE user_id = 1 GROUP BY categoria;
+INSERT INTO transactions (card_id, user_id, valor, categoria, descricao, data) VALUES 
+  (1, 1, 50.00, 'Alimentação', 'Supermercado', '2025-10-10'),
+  (1, 1, 25.00, 'Transporte', 'Uber', '2025-10-11'),
+  (2, 2, 30.00, 'Alimentação', 'Restaurante', '2025-10-10');
