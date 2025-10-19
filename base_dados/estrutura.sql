@@ -1,10 +1,5 @@
 USE pap_cartao;
 
--- Apagar tabelas antigas (se existirem)
-DROP TABLE IF EXISTS transactions;
-DROP TABLE IF EXISTS cards;
-DROP TABLE IF EXISTS users;
-
 -- Criar tabelas
 CREATE TABLE users (
   id INT AUTO_INCREMENT PRIMARY KEY,
@@ -36,10 +31,6 @@ CREATE TABLE transactions (
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
--- DADOS DE TESTE (Senha para todos: teste123)
-INSERT INTO users (nome, email, password_hash) VALUES 
-  ('João Silva', 'joao@email.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'),
-  ('Maria Santos', 'maria@email.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi');
 
 INSERT INTO cards (user_id, nome_cartao, limite) VALUES 
   (1, 'Visa João', 1000.00),
