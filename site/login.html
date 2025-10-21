@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="style/login.css">
+    <title>Login - Gestão de Finanças</title>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-wrapper">
+            <!-- Logo/Header -->
+            <div class="login-header">
+                <div class="logo">
+                    <i class="fas fa-wallet"></i>
+                </div>
+                <h1>Gestão de Finanças</h1>
+                <p>Controle seus gastos com cartão de crédito</p>
+            </div>
+
+            <!-- Formulário de Login -->
+            <form class="login-form" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-envelope"></i>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            placeholder="seu.email@exemplo.com" 
+                            required
+                        >
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Senha</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-lock"></i>
+                        <input 
+                            type="password" 
+                            id="password" 
+                            placeholder="Digite sua senha" 
+                            required
+                        >
+                        <button type="button" class="toggle-password" onclick="togglePasswordVisibility()">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="remember-forgot">
+                    <label class="remember-me">
+                        <input type="checkbox">
+                        <span>Lembrar-me</span>
+                    </label>
+                    <a href="#" class="forgot-password">Esqueci a senha</a>
+                </div>
+
+                <button type="submit" class="btn-login">
+                    <i class="fas fa-sign-in-alt"></i> Entrar
+                </button>
+            </form>
+
+            <!-- Divisor -->
+            <div class="divider">
+                <span>ou</span>
+            </div>
+
+            <!-- Login Social -->
+            <div class="social-login">
+                <button type="button" class="btn-social btn-google" onclick="loginWithGoogle()">
+                    <i class="fab fa-google"></i>
+                    <span>Google</span>
+                </button>
+                <button type="button" class="btn-social btn-facebook" onclick="loginWithFacebook()">
+                    <i class="fab fa-facebook-f"></i>
+                    <span>Facebook</span>
+                </button>
+            </div>
+
+            <!-- Registrar -->
+            <div class="login-footer">
+                <p>Não tem conta? <a href="registar.html" class="link-register">Registre-se aqui</a></p>
+            </div>
+        </div>
+
+        <!-- Ilustração / Lado Direito -->
+        <div class="login-illustration">
+            <div class="illustration-content">
+                <div class="illustration-icon">
+                    <i class="fas fa-credit-card"></i>
+                </div>
+                <h2>Bem-vindo de Volta!</h2>
+                <p>Gerencie seus gastos de forma segura e eficiente. Acompanhe cada transação e mantenha suas finanças sob controle.</p>
+                
+                <div class="features">
+                    <div class="feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Controle de gastos em tempo real</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Relatórios detalhados por categoria</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Alertas automáticos de limite</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Segurança de ponta</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Erro -->
+    <div class="modal-error" id="modalError">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeErrorModal()">&times;</button>
+            <i class="fas fa-exclamation-circle"></i>
+            <h3>Erro no Login</h3>
+            <p id="errorMessage">Email ou senha inválidos</p>
+            <button class="btn-modal" onclick="closeErrorModal()">Tentar Novamente</button>
+        </div>
+    </div>
+
+    <script>
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById('password');
+            const toggleBtn = document.querySelector('.toggle-password');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleBtn.innerHTML = '<i class="fas fa-eye-slash"></i>';
+            } else {
+                passwordInput.type = 'password';
+                toggleBtn.innerHTML = '<i class="fas fa-eye"></i>';
+            }
+        }
+
+        function handleLogin(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            // Exemplo de validação simples (em produção, verificar com servidor)
+            if (email === 'diogo@email.com' && password === '123456') {
+                // Login bem-sucedido - redirecionar para o painel
+                window.location.href = 'index1.html';
+            } else {
+                // Mostrar erro
+                showErrorModal('Email ou senha inválidos. Tente novamente.');
+            }
+        }
+
+        function showErrorModal(message) {
+            const modal = document.getElementById('modalError');
+            const errorMessage = document.getElementById('errorMessage');
+            errorMessage.textContent = message;
+            modal.classList.add('active');
+        }
+
+        function closeErrorModal() {
+            const modal = document.getElementById('modalError');
+            modal.classList.remove('active');
+        }
+
+        function loginWithGoogle() {
+            alert('Login com Google será implementado em breve.');
+        }
+
+        function loginWithFacebook() {
+            alert('Login com Facebook será implementado em breve.');
+        }
+
+        // Fechar modal ao clicar fora dele
+        document.addEventListener('click', function(event) {
+            const modal = document.getElementById('modalError');
+            if (event.target === modal) {
+                closeErrorModal();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="style/registro.css">
+    <title>Registro - Gestão de Finanças</title>
+</head>
+<body>
+    <div class="registro-container">
+        <!-- Lado Esquerdo - Ilustração -->
+        <div class="registro-illustration">
+            <div class="illustration-content">
+                <div class="illustration-icon">
+                    <i class="fas fa-user-plus"></i>
+                </div>
+                <h2>Junte-se a Nós!</h2>
+                <p>Crie sua conta agora e comece a controlar seus gastos com segurança e eficiência.</p>
+                
+                <div class="features">
+                    <div class="feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Registro rápido e seguro</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Dados protegidos com criptografia</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Sem cobranças ocultas</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Suporte 24/7</span>
+                    </div>
+                </div>
+
+                <div class="stats">
+                    <div class="stat">
+                        <h3>10K+</h3>
+                        <p>Utilizadores</p>
+                    </div>
+                    <div class="stat">
+                        <h3>4.8★</h3>
+                        <p>Avaliação</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Lado Direito - Formulário -->
+        <div class="registro-wrapper">
+            <div class="registro-header">
+                <div class="logo">
+                    <i class="fas fa-wallet"></i>
+                </div>
+                <h1>Criar Conta</h1>
+                <p>Preencha os dados abaixo para se registrar</p>
+            </div>
+
+            <!-- Abas de Progresso -->
+            <div class="progress-bar">
+                <div class="progress-step active" id="step1">
+                    <span class="step-number">1</span>
+                    <span class="step-label">Dados Pessoais</span>
+                </div>
+                <div class="progress-line"></div>
+                <div class="progress-step" id="step2">
+                    <span class="step-number">2</span>
+                    <span class="step-label">Conta</span>
+                </div>
+                <div class="progress-line"></div>
+                <div class="progress-step" id="step3">
+                    <span class="step-number">3</span>
+                    <span class="step-label">Confirmação</span>
+                </div>
+            </div>
+
+            <!-- Formulário Multi-passos -->
+            <form class="registro-form" onsubmit="handleRegistro(event)">
+                <!-- Passo 1: Dados Pessoais -->
+                <div class="form-step active" id="form-step-1">
+                    <h3><i class="fas fa-user"></i> Dados Pessoais</h3>
+                    
+                    <div class="form-group">
+                        <label for="nome">Nome Completo *</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-user"></i>
+                            <input 
+                                type="text" 
+                                id="nome" 
+                                placeholder="João Silva" 
+                                required
+                            >
+                        </div>
+                        <small>Mínimo 3 caracteres</small>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="telefone">Telefone *</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-phone"></i>
+                                <input 
+                                    type="tel" 
+                                    id="telefone" 
+                                    placeholder="+351 912 345 678" 
+                                    required
+                                >
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="data-nascimento">Data de Nascimento *</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-calendar"></i>
+                                <input 
+                                    type="date" 
+                                    id="data-nascimento" 
+                                    required
+                                >
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="morada">Morada *</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <input 
+                                type="text" 
+                                id="morada" 
+                                placeholder="Rua Principal, 123" 
+                                required
+                            >
+                        </div>
+                    </div>
+
+                    <button type="button" class="btn-next" onclick="nextStep()">
+                        Próximo <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <!-- Passo 2: Dados da Conta -->
+                <div class="form-step" id="form-step-2">
+                    <h3><i class="fas fa-lock"></i> Dados da Conta</h3>
+                    
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-envelope"></i>
+                            <input 
+                                type="email" 
+                                id="email" 
+                                placeholder="seu.email@exemplo.com" 
+                                required
+                            >
+                        </div>
+                        <small>Verifique se o email está correto</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Senha *</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-lock"></i>
+                            <input 
+                                type="password" 
+                                id="password" 
+                                placeholder="Mínimo 8 caracteres" 
+                                required
+                            >
+                            <button type="button" class="toggle-password" onclick="togglePasswordVisibility('password')">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <div class="password-strength">
+                            <div class="strength-bar" id="strengthBar"></div>
+                            <span id="strengthText" class="strength-text">Fraca</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirm-password">Confirmar Senha *</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-lock"></i>
+                            <input 
+                                type="password" 
+                                id="confirm-password" 
+                                placeholder="Repita a senha" 
+                                required
+                            >
+                            <button type="button" class="toggle-password" onclick="togglePasswordVisibility('confirm-password')">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button type="button" class="btn-back" onclick="prevStep()">
+                            <i class="fas fa-arrow-left"></i> Anterior
+                        </button>
+                        <button type="button" class="btn-next" onclick="nextStep()">
+                            Próximo <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Passo 3: Confirmação -->
+                <div class="form-step" id="form-step-3">
+                    <h3><i class="fas fa-check-circle"></i> Confirmação</h3>
+                    
+                    <div class="confirmation-box">
+                        <h4>Verifique seus dados:</h4>
+                        <div class="confirmation-item">
+                            <span class="label">Nome:</span>
+                            <span class="value" id="confirm-nome">-</span>
+                        </div>
+                        <div class="confirmation-item">
+                            <span class="label">Telefone:</span>
+                            <span class="value" id="confirm-telefone">-</span>
+                        </div>
+                        <div class="confirmation-item">
+                            <span class="label">Email:</span>
+                            <span class="value" id="confirm-email">-</span>
+                        </div>
+                        <div class="confirmation-item">
+                            <span class="label">Data de Nascimento:</span>
+                            <span class="value" id="confirm-data">-</span>
+                        </div>
+                        <div class="confirmation-item">
+                            <span class="label">Morada:</span>
+                            <span class="value" id="confirm-morada">-</span>
+                        </div>
+                    </div>
+
+                    <div class="checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="termos" required>
+                            <span>Aceito os <a href="#" onclick="showTermos()">Termos e Condições</a></span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="privacidade" required>
+                            <span>Aceito a <a href="#" onclick="showPrivacidade()">Política de Privacidade</a></span>
+                        </label>
+                    </div>
+
+                    <div class="button-group">
+                        <button type="button" class="btn-back" onclick="prevStep()">
+                            <i class="fas fa-arrow-left"></i> Anterior
+                        </button>
+                        <button type="submit" class="btn-register">
+                            <i class="fas fa-check"></i> Criar Conta
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            <!-- Login Link -->
+            <div class="registro-footer">
+                <p>Já tem conta? <a href="login.html" class="link-login">Faça login aqui</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Sucesso -->
+    <div class="modal-success" id="modalSuccess">
+        <div class="modal-content">
+            <i class="fas fa-check-circle"></i>
+            <h3>Conta Criada com Sucesso!</h3>
+            <p>Bem-vindo! Redirecionando para o painel...</p>
+            <div class="spinner"></div>
+        </div>
+    </div>
+
+    <!-- Modal de Termos -->
+    <div class="modal-overlay" id="modalTermos">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeModal('modalTermos')">&times;</button>
+            <h3>Termos e Condições</h3>
+            <div class="modal-scroll">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+                <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...</p>
+            </div>
+            <button class="btn-primary" onclick="closeModal('modalTermos')">Fechar</button>
+        </div>
+    </div>
+
+    <!-- Modal de Privacidade -->
+    <div class="modal-overlay" id="modalPrivacidade">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeModal('modalPrivacidade')">&times;</button>
+            <h3>Política de Privacidade</h3>
+            <div class="modal-scroll">
+                <p>A sua privacidade é importante para nós...</p>
+                <p>Recolhemos e utilizamos os seus dados de forma segura...</p>
+            </div>
+            <button class="btn-primary" onclick="closeModal('modalPrivacidade')">Fechar</button>
+        </div>
+    </div>
+
+    <script>
+        let currentStep = 1;
+
+        function nextStep() {
+            if (validateStep(currentStep)) {
+                if (currentStep < 3) {
+                    document.getElementById(`form-step-${currentStep}`).classList.remove('active');
+                    document.getElementById(`step${currentStep}`).classList.remove('active');
+                    
+                    currentStep++;
+                    
+                    document.getElementById(`form-step-${currentStep}`).classList.add('active');
+                    document.getElementById(`step${currentStep}`).classList.add('active');
+                    
+                    if (currentStep === 3) {
+                        preencherConfirmacao();
+                    }
+                }
+            }
+        }
+
+        function prevStep() {
+            if (currentStep > 1) {
+                document.getElementById(`form-step-${currentStep}`).classList.remove('active');
+                document.getElementById(`step${currentStep}`).classList.remove('active');
+                
+                currentStep--;
+                
+                document.getElementById(`form-step-${currentStep}`).classList.add('active');
+                document.getElementById(`step${currentStep}`).classList.add('active');
+            }
+        }
+
+        function validateStep(step) {
+            if (step === 1) {
+                const nome = document.getElementById('nome').value;
+                const telefone = document.getElementById('telefone').value;
+                const data = document.getElementById('data-nascimento').value;
+                const morada = document.getElementById('morada').value;
+                
+                if (nome.length < 3) {
+                    alert('Nome deve ter pelo menos 3 caracteres');
+                    return false;
+                }
+                if (!telefone) {
+                    alert('Telefone é obrigatório');
+                    return false;
+                }
+                if (!data || !morada) {
+                    alert('Preencha todos os campos');
+                    return false;
+                }
+            } else if (step === 2) {
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+                const confirmPassword = document.getElementById('confirm-password').value;
+                
+                if (!email.includes('@')) {
+                    alert('Email inválido');
+                    return false;
+                }
+                if (password.length < 8) {
+                    alert('Senha deve ter pelo menos 8 caracteres');
+                    return false;
+                }
+                if (password !== confirmPassword) {
+                    alert('As senhas não correspondem');
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        function preencherConfirmacao() {
+            document.getElementById('confirm-nome').textContent = document.getElementById('nome').value;
+            document.getElementById('confirm-telefone').textContent = document.getElementById('telefone').value;
+            document.getElementById('confirm-email').textContent = document.getElementById('email').value;
+            document.getElementById('confirm-data').textContent = document.getElementById('data-nascimento').value;
+            document.getElementById('confirm-morada').textContent = document.getElementById('morada').value;
+        }
+
+        function handleRegistro(event) {
+            event.preventDefault();
+            
+            if (!document.getElementById('termos').checked || !document.getElementById('privacidade').checked) {
+                alert('Aceite os termos e a privacidade para continuar');
+                return;
+            }
+
+            // Simular criação de conta
+            const modal = document.getElementById('modalSuccess');
+            modal.classList.add('active');
+            
+            setTimeout(() => {
+                window.location.href = 'login.html';
+            }, 3000);
+        }
+
+        function togglePasswordVisibility(inputId) {
+            const input = document.getElementById(inputId);
+            const btn = event.target.closest('.toggle-password');
+            
+            if (input.type === 'password') {
+                input.type = 'text';
+                btn.innerHTML = '<i class="fas fa-eye-slash"></i>';
+            } else {
+                input.type = 'password';
+                btn.innerHTML = '<i class="fas fa-eye"></i>';
+            }
+        }
+
+        function showTermos() {
+            document.getElementById('modalTermos').classList.add('active');
+        }
+
+        function showPrivacidade() {
+            document.getElementById('modalPrivacidade').classList.add('active');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+        }
+
+        // Atualizar força da senha em tempo real
+        document.addEventListener('input', function(e) {
+            if (e.target.id === 'password') {
+                const password = e.target.value;
+                const strength = calculatePasswordStrength(password);
+                updatePasswordStrength(strength);
+            }
+        });
+
+        function calculatePasswordStrength(password) {
+            let strength = 0;
+            if (password.length >= 8) strength++;
+            if (password.match(/[a-z]/) && password.match(/[A-Z]/)) strength++;
+            if (password.match(/[0-9]/)) strength++;
+            if (password.match(/[^a-zA-Z0-9]/)) strength++;
+            return strength;
+        }
+
+        function updatePasswordStrength(strength) {
+            const bar = document.getElementById('strengthBar');
+            const text = document.getElementById('strengthText');
+            const levels = ['Fraca', 'Fraca', 'Média', 'Forte', 'Muito Forte'];
+            const colors = ['#e74a3b', '#e74a3b', '#f6c23e', '#28a745', '#20c997'];
+            
+            bar.style.width = (strength * 25) + '%';
+            bar.style.backgroundColor = colors[strength];
+            text.textContent = levels[strength];
+        }
+
+        // Fechar modal ao clicar fora
+        document.querySelectorAll('.modal-overlay').forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

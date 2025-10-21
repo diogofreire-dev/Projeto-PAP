@@ -7,6 +7,8 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: #f0f2f5;
+    padding: 0;
+    margin: 0;
 }
 
 .sidebar {
@@ -110,7 +112,7 @@ body {
 .notification-badge {
     background: #e74a3b;
     color: #fff;
-    border-radius: 150%;
+    border-radius: 50%;
     width: 24px;
     height: 24px;
     display: flex;
@@ -119,6 +121,10 @@ body {
     font-size: 12px;
     font-weight: bold;
     margin-left: auto;
+    position: absolute;
+    right: 15px;                
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 /* Footer */
@@ -153,8 +159,9 @@ body {
 /* Conteúdo Principal */
 .content-wrapper {
     margin-left: 320px;
+    width: calc(100% - 320px);
     padding: 40px;
-    margin-top: 20px;
+    min-height: 100vh;
 }
 
 .content-wrapper h1 {
@@ -166,6 +173,7 @@ body {
 .content-wrapper > p {
     color: #666;
     margin-bottom: 30px;
+    font-size: 14px;
 }
 
 /* Security Container */
@@ -173,6 +181,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    max-width: 800px;
 }
 
 .security-section {
@@ -181,10 +190,6 @@ body {
     overflow: hidden;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
-}
-
-.security-section:hover {
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
 }
 
 .section-header {
@@ -278,6 +283,7 @@ body {
     font-size: 16px;
     cursor: pointer;
     transition: color 0.3s ease;
+    padding: 0;
 }
 
 .toggle-password-btn:hover {
@@ -388,29 +394,6 @@ body {
     margin-bottom: 10px;
 }
 
-/* QR Code */
-.qr-code {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 40px;
-    background: #f9f9f9;
-    border: 2px dashed #ddd;
-    border-radius: 8px;
-    margin-bottom: 20px;
-}
-
-.qr-code i {
-    font-size: 60px;
-    color: #ccc;
-    margin-bottom: 10px;
-}
-
-.qr-code p {
-    color: #999;
-    font-size: 14px;
-}
 
 /* Dispositivos */
 .device-list {
