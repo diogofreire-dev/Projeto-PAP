@@ -1,6 +1,7 @@
+DROP DATABASE IF EXISTS pap_cartao;
+CREATE DATABASE pap_cartao;
 USE pap_cartao;
 
--- Criar tabelas
 CREATE TABLE users (
   id INT AUTO_INCREMENT PRIMARY KEY,
   nome VARCHAR(100) NOT NULL,
@@ -31,12 +32,18 @@ CREATE TABLE transactions (
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
+INSERT INTO users (nome, email, password_hash) VALUES 
+  ('João Silva', 'joao@email.com', 'hash123'),
+  ('Maria Santos', 'maria@email.com', 'hash456'),
+  ('Diogo Freire', 'diogo@email.com', 'hash789');
 
 INSERT INTO cards (user_id, nome_cartao, limite) VALUES 
   (1, 'Visa João', 1000.00),
-  (2, 'Mastercard Maria', 800.00);
+  (2, 'Mastercard Maria', 800.00),
+  (3, 'Visa Diogo', 1500.00);
 
 INSERT INTO transactions (card_id, user_id, valor, categoria, descricao, data) VALUES 
   (1, 1, 50.00, 'Alimentação', 'Supermercado', '2025-10-10'),
   (1, 1, 25.00, 'Transporte', 'Uber', '2025-10-11'),
-  (2, 2, 30.00, 'Alimentação', 'Restaurante', '2025-10-10');
+  (2, 2, 30.00, 'Alimentação', 'Restaurante', '2025-10-10'),
+  (3, 3, 200.00, 'Eletrónica', 'Fnac', '2025-10-18');
