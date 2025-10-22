@@ -1,43 +1,39 @@
 <?php
-define('DB_HOST', 'localhost');
-define('DB_USER', 'root');
-define('DB_PASS', '');
-define('DB_NAME', 'pap_cartao');
+require_once 'config.php';
+header('Content-Type: application/json');
+$user_id = checkAuth();
+$conn = getConnection();
 
-function getConnection() {
-    $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-    if ($conn->connect_error) {
-        die("Erro na conexão: " . $conn->connect_error);
+// GET - Listar todas as categorias usadas pelo utilizador
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    
+    // Obter categorias únicas com estatísticas
+    $sql = "SELECT 
+        categoria,
+        COUNT(*) AS total_transacoes,
+        SUM(valor) AS total_gasto,
+        ROUND(AVG(valor), 2) AS gasto_medio,
+        MAX(valor) AS gasto_maximo,
+        MIN(valor) AS gasto_minimo,
+        MAX(data) AS ultima_transacao
+        FROM transactions
+        WHERE user_id = ?
+        GROUP BY categoria
+        ORDER BY total_gasto DESC";
+    
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    
+    $categorias = [];
+    while ($row = $result->fetch_assoc()) {
+        $categorias[] = $row;
     }
-    $conn->set_charset("utf8mb4");
-    return $conn;
+    
+    sendSuccess($categorias);
+    $stmt->close();
 }
 
-function checkAuth() {
-    session_start();
-    if (!isset($_SESSION['user_id'])) {
-        header('Location: login.html');
-        exit;
-    }
-    return $_SESSION['user_id'];
-}
-
-function sendError($message, $code = 400) {
-    http_response_code($code);
-    echo json_encode(["success" => false, "error" => $message]);
-    exit;
-}
-
-function sendSuccess($data) {
-    echo json_encode(["success" => true, "data" => $data]);
-    exit;
-}
-
-function requireLogin() {
-    session_start();
-    if (!isset($_SESSION['user_id'])) {
-        header('Location: login.html');
-        exit;
-    }
-}
+$conn->close();
 ?>
