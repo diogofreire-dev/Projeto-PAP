@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="style/ligacao_bancaria.css">
+    <title>Conectar Banco</title>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <div class="user-profile">
+                <div class="avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <p>Diogo Freire</p>
+            </div>
+        </div>
+
+<nav class="menu">
+    <a href="gestao_e_financas2.html" class="menu-item">
+        <i class="fas fa-home"></i>
+        <span>Gestão e finanças</span>
+    </a>
+    <a href="ligação_bancaria.html" class="menu-item active">
+        <i class="fas fa-link"></i>
+        <span>Ligar Banco</span>
+    </a>
+    <a href="notificacoes.html" class="menu-item">
+        <i class="fas fa-bell"></i>
+        <span>Notificações</span>
+    </a>
+    <a href="login_segurança.html" class="menu-item">
+        <i class="fas fa-lock"></i>
+        <span>Login/Segurança</span>
+    </a>
+    <a href="#" class="menu-item">
+        <i class="fas fa-info-circle"></i>
+        <span>Sobre nós</span>
+    </a>
+</nav>
+
+<div class="sidebar-footer">
+    <button class="settings-btn">
+    <i class="fas fa-cog"></i>
+        </button>
+    </div>
+</div>
+
+<!-- Conteúdo Principal -->
+<div class="content-wrapper">
+    <!-- Passo 1: Escolher Banco -->
+<div class="step-container active" id="step1">
+    <div class="step-header">
+        <h1><i class="fas fa-university"></i> Conectar Conta Bancária</h1>
+        <p>Escolha o seu banco para importar transações automaticamente</p>
+    </div>
+
+<div class="info-box">
+    <i class="fas fa-shield-alt"></i>
+    <div>
+        <h3>Conexão Segura via Open Banking</h3>
+        <p>Os seus dados são protegidos com encriptação de ponta a ponta. Nunca guardamos as suas credenciais bancárias.</p>
+    </div>
+</div>
+
+<div class="banks-grid">
+    <button class="bank-card" onclick="selectBank('Millennium BCP', 'millennium')">
+        <div class="bank-logo millennium">
+            <i class="fas fa-building"></i>
+        </div>
+        <span class="bank-name">Millennium BCP</span>
+        <i class="fas fa-chevron-right"></i>
+    </button>
+
+    <button class="bank-card" onclick="selectBank('Caixa Geral de Depósitos', 'cgd')">
+        <div class="bank-logo cgd">
+            <i class="fas fa-landmark"></i>
+        </div>
+        <span class="bank-name">Caixa Geral</span>
+        <i class="fas fa-chevron-right"></i>
+    </button>
+
+    <button class="bank-card" onclick="selectBank('Santander', 'santander')">
+        <div class="bank-logo santander">
+            <i class="fas fa-university"></i>
+        </div>
+        <span class="bank-name">Santander</span>
+        <i class="fas fa-chevron-right"></i>
+    </button>
+
+    <button class="bank-card" onclick="selectBank('Novo Banco', 'novobanco')">
+        <div class="bank-logo novobanco">
+            <i class="fas fa-building-columns"></i>
+        </div>
+        <span class="bank-name">Novo Banco</span>
+        <i class="fas fa-chevron-right"></i>
+    </button>
+
+    <button class="bank-card" onclick="selectBank('BPI', 'bpi')">
+        <div class="bank-logo bpi">
+            <i class="fas fa-piggy-bank"></i>
+        </div>
+        <span class="bank-name">BPI</span>
+        <i class="fas fa-chevron-right"></i>
+    </button>
+
+    <button class="bank-card" onclick="selectBank('ActivoBank', 'activobank')">
+        <div class="bank-logo activobank">
+            <i class="fas fa-wallet"></i>
+        </div>
+        <span class="bank-name">ActivoBank</span>
+        <i class="fas fa-chevron-right"></i>
+    </button>
+</div>
+
+<div class="demo-notice">
+    <i class="fas fa-info-circle"></i>
+    <p><strong>Modo Demonstração:</strong> Esta é uma simulação para efeitos académicos. Nenhuma conexão real é estabelecida.</p>
+</div>
+</div>
+
+<!-- Passo 2: Autorização -->
+<div class="step-container" id="step2">
+    <div class="step-header">
+        <button class="btn-back" onclick="goToStep(1)">
+            <i class="fas fa-arrow-left"></i> Voltar
+        </button>
+        <h1 id="bankTitle">Millennium BCP</h1>
+        <p>Autorize o acesso à sua conta bancária</p>
+    </div>
+
+    <div class="auth-container">
+        <div class="auth-box">
+            <div class="bank-logo-large" id="bankLogoLarge">
+                <i class="fas fa-building"></i>
+            </div>
+            
+            <h3>Permissões Solicitadas</h3>
+            <div class="permissions-list">
+                <div class="permission-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Ver saldo da conta</span>
+                </div>
+                <div class="permission-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Ler transações (últimos 90 dias)</span>
+                </div>
+                <div class="permission-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Identificar categorias de gastos</span>
+                </div>
+            </div>
+
+            <div class="auth-info">
+                <i class="fas fa-lock"></i>
+                <p>Esta ligação é válida por 90 dias. Pode revogar a autorização a qualquer momento.</p>
+            </div>
+
+            <button class="btn-authorize" onclick="authorizeBank()">
+                <i class="fas fa-shield-check"></i> Autorizar Acesso
+            </button>
+
+            <p class="terms">Ao autorizar, concorda com os <a href="#">Termos de Serviço</a> e <a href="#">Política de Privacidade</a></p>
+        </div>
+    </div>
+</div>
+
+<!-- Passo 3: A Conectar -->
+<div class="step-container" id="step3">
+    <div class="connecting-container">
+        <div class="spinner-large"></div>
+        <h2>A conectar ao banco...</h2>
+        <p id="connectingMessage">A estabelecer ligação segura</p>
+        <div class="progress-bar-container">
+            <div class="progress-bar-fill" id="progressBar"></div>
+        </div>
+        <span class="progress-text" id="progressText">0%</span>
+    </div>
+</div>
+
+<!-- Passo 4: Sucesso -->
+<div class="step-container" id="step4">
+    <div class="success-container">
+        <div class="success-icon">
+            <i class="fas fa-check-circle"></i>
+        </div>
+        <h2>Conta Conectada com Sucesso!</h2>
+        <p>As suas transações foram importadas e estão prontas para análise.</p>
+
+        <div class="account-summary">
+            <h3>Resumo da Conta</h3>
+            <div class="summary-grid">
+                <div class="summary-item">
+                    <span class="label">IBAN</span>
+                    <span class="value" id="accountIban">PT50 0002 0123 1234 5678 9015 4</span>
+                </div>
+                <div class="summary-item">
+                    <span class="label">Saldo Atual</span>
+                    <span class="value balance" id="accountBalance">1.275,50 €</span>
+                </div>
+                <div class="summary-item">
+                    <span class="label">Transações Importadas</span>
+                    <span class="value" id="transactionsCount">47 transações</span>
+                </div>
+                <div class="summary-item">
+                    <span class="label">Período</span>
+                    <span class="value">Últimos 90 dias</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="transactions-preview">
+            <h3>Últimas Transações</h3>
+            <div class="transaction-list" id="transactionList">
+                <!-- Preenchido via JavaScript -->
+            </div>
+        </div>
+
+            <button class="btn-dashboard" onclick="goToDashboard()">
+                <i class="fas fa-chart-line"></i> Ver Dashboard Completo
+            </button>
+        </div>
+    </div>
+</div>
+  
+    <script>
+        let currentStep = 1;
+        let selectedBank = '';
+
+        // Dados simulados de transações
+        const mockTransactions = [
+            {date: "2025-10-21", description: "Supermercado Continente", amount: -45.80, category: "Alimentação"},
+            {date: "2025-10-20", description: "Uber", amount: -6.20, category: "Transporte"},
+            {date: "2025-10-19", description: "Netflix", amount: -10.99, category: "Entretenimento"},
+            {date: "2025-10-18", description: "Salário", amount: 1200.00, category: "Receita"},
+            {date: "2025-10-17", description: "Farmácia", amount: -12.50, category: "Saúde"},
+            {date: "2025-10-16", description: "Restaurante", amount: -28.90, category: "Alimentação"},
+            {date: "2025-10-15", description: "Combustível", amount: -55.00, category: "Transporte"}
+        ];
+
+        function goToStep(step) {
+            document.querySelectorAll('.step-container').forEach(el => el.classList.remove('active'));
+            document.getElementById(`step${step}`).classList.add('active');
+            currentStep = step;
+        }
+
+        function selectBank(name, id) {
+            selectedBank = name;
+            document.getElementById('bankTitle').textContent = name;
+            
+            // Atualizar logo do banco
+            const logos = {
+                millennium: 'fa-building',
+                cgd: 'fa-landmark',
+                santander: 'fa-university',
+                novobanco: 'fa-building-columns',
+                bpi: 'fa-piggy-bank',
+                activobank: 'fa-wallet'
+            };
+            
+            document.getElementById('bankLogoLarge').innerHTML = `<i class="fas ${logos[id]}"></i>`;
+            goToStep(2);
+        }
+
+        function authorizeBank() {
+            goToStep(3);
+            simulateConnection();
+        }
+
+        function simulateConnection() {
+            const messages = [
+                "A estabelecer ligação segura",
+                "A autenticar credenciais",
+                "A importar dados da conta",
+                "A processar transações",
+                "A categorizar gastos",
+                "Quase pronto..."
+            ];
+
+            let progress = 0;
+            let messageIndex = 0;
+
+            const interval = setInterval(() => {
+                progress += 16.67;
+                document.getElementById('progressBar').style.width = progress + '%';
+                document.getElementById('progressText').textContent = Math.round(progress) + '%';
+
+                if (messageIndex < messages.length) {
+                    document.getElementById('connectingMessage').textContent = messages[messageIndex];
+                    messageIndex++;
+                }
+
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        loadAccountData();
+                        goToStep(4);
+                    }, 500);
+                }
+            }, 1000);
+        }
+
+        function loadAccountData() {
+            // Preencher dados da conta
+            const ibans = {
+                'Millennium BCP': 'PT50 0033 0000 1234 5678 9015 4',
+                'Caixa Geral de Depósitos': 'PT50 0035 0000 1234 5678 9015 4',
+                'Santander': 'PT50 0018 0000 1234 5678 9015 4',
+                'Novo Banco': 'PT50 0007 0000 1234 5678 9015 4',
+                'BPI': 'PT50 0010 0000 1234 5678 9015 4',
+                'ActivoBank': 'PT50 0023 0000 1234 5678 9015 4'
+            };
+
+            document.getElementById('accountIban').textContent = ibans[selectedBank] || 'PT50 0002 0123 1234 5678 9015 4';
+            document.getElementById('accountBalance').textContent = '1.275,50 €';
+            document.getElementById('transactionsCount').textContent = mockTransactions.length + ' transações';
+
+            // Preencher lista de transações
+            const transactionList = document.getElementById('transactionList');
+            transactionList.innerHTML = '';
+
+            mockTransactions.slice(0, 5).forEach(transaction => {
+                const item = document.createElement('div');
+                item.className = 'transaction-item';
+                item.innerHTML = `
+                    <div class="transaction-icon ${transaction.amount > 0 ? 'positive' : 'negative'}">
+                        <i class="fas ${transaction.amount > 0 ? 'fa-arrow-down' : 'fa-arrow-up'}"></i>
+                    </div>
+                    <div class="transaction-details">
+                        <span class="transaction-description">${transaction.description}</span>
+                        <span class="transaction-category">${transaction.category}</span>
+                    </div>
+                    <div class="transaction-amount ${transaction.amount > 0 ? 'positive' : 'negative'}">
+                        ${transaction.amount > 0 ? '+' : ''}${transaction.amount.toFixed(2)} €
+                    </div>
+                    <span class="transaction-date">${transaction.date}</span>
+                `;
+                transactionList.appendChild(item);
+            });
+
+            // Guardar transações no localStorage (simulação)
+            localStorage.setItem('bankConnected', 'true');
+            localStorage.setItem('bankName', selectedBank);
+            localStorage.setItem('transactions', JSON.stringify(mockTransactions));
+        }
+
+        function goToDashboard() {
+            window.location.href = 'gestao_e_financas2.html';
+        }
+    </script>
+</body>
+</html>
