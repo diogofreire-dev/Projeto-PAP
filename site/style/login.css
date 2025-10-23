@@ -6,21 +6,52 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #255048 0%, #4a8a7e 100%);
+    background: linear-gradient(135deg, #5a9b8f 0%, #4a8a7e 100%);
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: auto;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="10" r="0.5" fill="rgba(255,255,255,0.05)"/><circle cx="10" cy="50" r="0.5" fill="rgba(255,255,255,0.05)"/><circle cx="90" cy="50" r="0.5" fill="rgba(255,255,255,0.05)"/><circle cx="50" cy="90" r="0.5" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    pointer-events: none;
+    z-index: -1;
 }
 
 .login-container {
     display: flex;
     width: 100%;
-    max-width: 1200px;
+    max-width: 900px;
     background: #fff;
-    border-radius: 15px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(0, 31, 63, 0.1);
     overflow: hidden;
+    position: relative;
+}
+
+.login-container::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(0, 31, 63, 0.05) 0%, transparent 70%);
+    pointer-events: none;
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    50% { transform: translate(10px, -10px) rotate(1deg); }
 }
 
 /* Lado Esquerdo - Formulário */
@@ -29,7 +60,7 @@ body {
     padding: 60px 50px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 .login-header {
@@ -91,12 +122,12 @@ body {
 }
 
 .input-wrapper:focus-within {
-    border-color: #5a9b8f;
-    box-shadow: 0 0 0 3px rgba(90, 155, 143, 0.1);
+    border-color: #001f3f;
+    box-shadow: 0 0 0 3px rgba(0, 31, 63, 0.1);
 }
 
 .input-wrapper i {
-    color: #5a9b8f;
+    color: #001f3f;
     font-size: 16px;
 }
 
@@ -119,7 +150,7 @@ body {
 .toggle-password {
     background: transparent;
     border: none;
-    color: #5a9b8f;
+    color: #001f3f;
     font-size: 16px;
     cursor: pointer;
     transition: color 0.3s ease;
@@ -127,7 +158,7 @@ body {
 }
 
 .toggle-password:hover {
-    color: #4a8a7e;
+    color: #003366;
 }
 
 /* Remember & Forgot */
@@ -154,14 +185,14 @@ body {
 }
 
 .forgot-password {
-    color: #5a9b8f;
+    color: #001f3f;
     text-decoration: none;
     font-weight: 600;
     transition: color 0.3s ease;
 }
 
 .forgot-password:hover {
-    color: #4a8a7e;
+    color: #003366;
 }
 
 /* Botão Login */
@@ -180,6 +211,23 @@ body {
     justify-content: center;
     gap: 10px;
     margin-top: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-login::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.btn-login:hover::before {
+    left: 100%;
 }
 
 .btn-login:hover {
@@ -257,14 +305,14 @@ body {
 }
 
 .link-register {
-    color: #5a9b8f;
+    color: #001f3f;
     text-decoration: none;
-    font-weight: 600;
+    font-weight: bold;
     transition: color 0.3s ease;
 }
 
 .link-register:hover {
-    color: #4a8a7e;
+    color: #003366;
 }
 
 /* Lado Direito - Ilustração */

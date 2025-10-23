@@ -6,7 +6,7 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #255048 0%, #4a8a7e 100%);
+    background: linear-gradient(135deg, #5a9b8f 0%, #4a8a7e 100%);
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -255,7 +255,7 @@ body {
 }
 
 .input-wrapper i {
-    color: #5a9b8f;
+    color: #001f3f;
     font-size: 16px;
 }
 
@@ -314,7 +314,7 @@ body {
 .toggle-password {
     background: transparent;
     border: none;
-    color: #5a9b8f;
+    color: #001f3f;
     font-size: 16px;
     cursor: pointer;
     transition: color 0.3s ease;
@@ -322,7 +322,7 @@ body {
 }
 
 .toggle-password:hover {
-    color: #4a8a7e;
+    color: #003366;
 }
 
 /* Confirmação */
@@ -330,7 +330,7 @@ body {
     background: #f9f9f9;
     padding: 20px;
     border-radius: 8px;
-    border-left: 4px solid #5a9b8f;
+    border-left: 4px solid #001f3f;
     margin-bottom: 20px;
 }
 
@@ -382,11 +382,11 @@ body {
     height: 18px;
     margin-top: 2px;
     cursor: pointer;
-    accent-color: #5a9b8f;
+    accent-color: #001f3f;
 }
 
 .checkbox-label a {
-    color: #5a9b8f;
+    color: #001f3f;
     text-decoration: none;
     font-weight: 600;
 }
@@ -452,14 +452,14 @@ body {
 }
 
 .link-login {
-    color: #5a9b8f;
+    color: #001f3f;
     text-decoration: none;
-    font-weight: 600;
+    font-weight: bold;
     transition: color 0.3s ease;
 }
 
 .link-login:hover {
-    color: #4a8a7e;
+    color: #003366;
 }
 
 /* Modal de Sucesso */
@@ -609,7 +609,7 @@ body {
 .modal-box .btn-primary {
     margin: 20px;
     padding: 12px 30px;
-    background: linear-gradient(135deg, #5a9b8f 0%, #4a8a7e 100%);
+    background: linear-gradient(135deg, #001f3f 0%, #003366 100%);
     color: #fff;
     border: none;
     border-radius: 6px;
@@ -621,7 +621,7 @@ body {
 
 .modal-box .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(90, 155, 143, 0.3);
+    box-shadow: 0 5px 15px rgba(0, 31, 63, 0.3);
 }
 
 /* Responsivo */
