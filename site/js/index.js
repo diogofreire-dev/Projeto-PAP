@@ -1,4 +1,4 @@
-// Script para a página inicial (index1.html)
+// Script para a página inicial (index.html)
 // Exemplo de notificações e eventos do menu
 
 document.addEventListener('DOMContentLoaded', function() {

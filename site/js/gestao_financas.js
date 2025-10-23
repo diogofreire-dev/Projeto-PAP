@@ -1,4 +1,4 @@
-// Script para a página de gestão e finanças (gestao_e_financas2.html)
+// Script para a página de gestão e finanças (gestao_e_financas.html)
 // Funcionalidades do gráfico financeiro e menu
 
 const menuFinance = document.getElementById('menu-finance');

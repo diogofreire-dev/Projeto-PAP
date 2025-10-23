@@ -127,6 +127,6 @@ function loadAccountData() {
 function goToDashboard() {
     showNotification('info', 'Redirecionando', 'A carregar dashboard financeiro...');
     setTimeout(() => {
-        window.location.href = 'gestao_e_financas2.html';
+        window.location.href = 'gestao_e_financas.html';
     }, 1000);
 }

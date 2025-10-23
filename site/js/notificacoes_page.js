@@ -169,7 +169,7 @@ function checkEmptyState() {
 
 // Ações das notificações
 function viewTransaction() {
-    window.location.href = 'gestao_e_financas2.html';
+    window.location.href = 'gestao_e_financas.html';
 }
 
 function viewSecurity() {
