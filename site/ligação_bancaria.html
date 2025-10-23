@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="style/ligacao_bancaria.css">
+    <link rel="stylesheet" href="style/notificacoes_toast.css">
     <title>Conectar Banco</title>
 </head>
 <body>
@@ -21,7 +22,7 @@
 <nav class="menu">
     <a href="gestao_e_financas2.html" class="menu-item">
         <i class="fas fa-home"></i>
-        <span>Gestão e finanças</span>
+        <span>Gestão e Finanças</span>
     </a>
     <a href="ligação_bancaria.html" class="menu-item active">
         <i class="fas fa-link"></i>
@@ -348,6 +349,63 @@
 
         function goToDashboard() {
             window.location.href = 'gestao_e_financas2.html';
+        }
+    </script>
+<script src="js/notificacoes.js"></script>
+    <script>
+        // Adicionar notificações ao processo de conexão bancária
+        function loadAccountData() {
+            // Preencher dados da conta
+            const ibans = {
+                'Millennium BCP': 'PT50 0033 0000 1234 5678 9015 4',
+                'Caixa Geral de Depósitos': 'PT50 0035 0000 1234 5678 9015 4',
+                'Santander': 'PT50 0018 0000 1234 5678 9015 4',
+                'Novo Banco': 'PT50 0007 0000 1234 5678 9015 4',
+                'BPI': 'PT50 0010 0000 1234 5678 9015 4',
+                'ActivoBank': 'PT50 0023 0000 1234 5678 9015 4'
+            };
+
+            document.getElementById('accountIban').textContent = ibans[selectedBank] || 'PT50 0002 0123 1234 5678 9015 4';
+            document.getElementById('accountBalance').textContent = '1.275,50 €';
+            document.getElementById('transactionsCount').textContent = mockTransactions.length + ' transações';
+
+            // Preencher lista de transações
+            const transactionList = document.getElementById('transactionList');
+            transactionList.innerHTML = '';
+
+            mockTransactions.slice(0, 5).forEach(transaction => {
+                const item = document.createElement('div');
+                item.className = 'transaction-item';
+                item.innerHTML = `
+                    <div class="transaction-icon ${transaction.amount > 0 ? 'positive' : 'negative'}">
+                        <i class="fas ${transaction.amount > 0 ? 'fa-arrow-down' : 'fa-arrow-up'}"></i>
+                    </div>
+                    <div class="transaction-details">
+                        <span class="transaction-description">${transaction.description}</span>
+                        <span class="transaction-category">${transaction.category}</span>
+                    </div>
+                    <div class="transaction-amount ${transaction.amount > 0 ? 'positive' : 'negative'}">
+                        ${transaction.amount > 0 ? '+' : ''}${transaction.amount.toFixed(2)} €
+                    </div>
+                    <span class="transaction-date">${transaction.date}</span>
+                `;
+                transactionList.appendChild(item);
+            });
+
+            // Guardar transações no localStorage (simulação)
+            localStorage.setItem('bankConnected', 'true');
+            localStorage.setItem('bankName', selectedBank);
+            localStorage.setItem('transactions', JSON.stringify(mockTransactions));
+
+            // Mostrar notificação de sucesso
+            showNotification('success', 'Banco Conectado', `Conta ${selectedBank} conectada com sucesso!`);
+        }
+
+        function goToDashboard() {
+            showNotification('info', 'Redirecionando', 'A carregar dashboard financeiro...');
+            setTimeout(() => {
+                window.location.href = 'gestao_e_financas2.html';
+            }, 1000);
         }
     </script>
 </body>

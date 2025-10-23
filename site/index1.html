@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="style/index1.css">
+    <link rel="stylesheet" href="style/notificacoes_toast.css">
     <title>Menu Sidebar</title>
 </head>
 <body>
@@ -21,13 +22,13 @@
 <nav class="menu">
     <a href="gestao_e_financas2.html" class="menu-item">
         <i class="fas fa-home"></i>
-        <span>Gestão e finanças</span>
+        <span>Gestão e Finanças</span>
     </a>
-    <a href="ligação_bancaria.html" class="menu-item active">
+    <a href="ligação_bancaria.html" class="menu-item">
         <i class="fas fa-link"></i>
         <span>Ligar Banco</span>
     </a>
-    <a href="notificacoes.html" class="menu-item">
+    <a href="notificacoes.html" class="menu-item" id="menu-notifications">
         <i class="fas fa-bell"></i>
         <span>Notificações</span>
     </a>
@@ -47,5 +48,29 @@
         </button>
     </div>
 </div>
+
+    <script src="js/notificacoes.js"></script>
+    <script>
+    // Exemplo de notificações - remover em produção
+    document.addEventListener('DOMContentLoaded', function() {
+        // Simular algumas notificações de exemplo
+        setTimeout(() => {
+            showNotification('success', 'Bem-vindo!', 'Sistema de notificações ativado.');
+        }, 1000);
+
+        setTimeout(() => {
+            showNotification('info', 'Dica', 'Clique no ícone de sino para ver todas as notificações.');
+        }, 3000);
+
+        // Adicionar evento ao menu de notificações
+        const menuNotifications = document.getElementById('menu-notifications');
+        if (menuNotifications) {
+            menuNotifications.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.location.href = 'notificacoes.html';
+            });
+        }
+    });
+</script>
 </body>
 </html>

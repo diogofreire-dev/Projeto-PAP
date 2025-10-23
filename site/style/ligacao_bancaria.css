@@ -131,6 +131,8 @@ body {
     margin-left: 320px;
     padding: 40px;
     min-height: 100vh;
+    position: relative;
+    z-index: 1;
 }
 
 .step-container {

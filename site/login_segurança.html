@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="style/login_seguranca.css">
+    <link rel="stylesheet" href="style/notificacoes_toast.css">
     <title>Login e Segurança</title>
 </head>
 <body>
@@ -23,14 +24,13 @@
                 <i class="fas fa-home"></i>
                 <span>Gestão e Finanças</span>
             </a>
-            <a href="ligação_bancaria.html" class="menu-item active">
+            <a href="ligação_bancaria.html" class="menu-item">
                 <i class="fas fa-link"></i>
                 <span>Ligar Banco</span>
             </a>
             <a href="notificacoes.html" class="menu-item" id="menu-notifications">
                 <i class="fas fa-bell"></i>
                 <span>Notificações</span>
-                <span class="notification-badge">3</span>
             </a>
             <a href="#" class="menu-item active">
                 <i class="fas fa-lock"></i>
@@ -250,6 +250,38 @@
                 const content = firstSection.nextElementSibling;
                 content.style.display = 'block';
                 btn.classList.add('active');
+            }
+        });
+    </script>
+<script src="js/notificacoes.js"></script>
+    <script>
+        // Adicionar notificações para ações de segurança
+        document.addEventListener('DOMContentLoaded', function() {
+            // Notificações para alteração de senha
+            const passwordForm = document.querySelector('.security-form');
+            if (passwordForm) {
+                passwordForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    showNotification('success', 'Senha Atualizada', 'Sua senha foi alterada com sucesso!');
+                });
+            }
+
+            // Notificações para remoção de dispositivos
+            const removeButtons = document.querySelectorAll('.btn-danger');
+            removeButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const deviceName = this.closest('.device-item').querySelector('h3').textContent;
+                    showNotification('warning', 'Dispositivo Removido', `O dispositivo ${deviceName} foi desconectado.`);
+                });
+            });
+
+            // Notificações para atualização de dados pessoais
+            const personalForm = document.querySelectorAll('.security-form')[1]; // Segundo formulário
+            if (personalForm) {
+                personalForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    showNotification('success', 'Dados Atualizados', 'Suas informações pessoais foram salvas com sucesso!');
+                });
             }
         });
     </script>

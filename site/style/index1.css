@@ -125,3 +125,10 @@ body {
     background: rgba(255, 255, 255, 0.4);
     transform: rotate(90deg);
 }
+
+/* Conteúdo Principal */
+.content-wrapper {
+    margin-left: 320px;
+    padding: 40px;
+    min-height: 100vh;
+}

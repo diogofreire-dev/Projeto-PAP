@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="style/gestao.css">
+    <link rel="stylesheet" href="style/notificacoes_toast.css">
     <title>Menu Financeiro com Gráfico</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -37,7 +38,7 @@
     <i class="fa-solid fa-arrow-trend-up"></i>
       <span>Fluxo de Caixa</span>
     </a>
-    <a href="index1.html".html" class="menu-item">
+    <a href="index1.html" class="menu-item">
     <i class="fa-solid fa-arrow-left"></i>
       <span>Voltar ao Painel</span>
     </a>
@@ -56,6 +57,7 @@
   </div>
 </div>
 
+<script src="js/notificacoes.js"></script>
 <script>
   const menuFinance = document.getElementById('menu-finance');
   const financeContent = document.getElementById('financeContent')
@@ -72,6 +74,7 @@
     const result = await response.json();
     if (result.error) {
         console.error(result.error);
+        showNotification('error', 'Erro', 'Não foi possível carregar os dados financeiros.');
     return;
       }
     const ctx = document.getElementById('financeChart').getContext('2d');
@@ -100,9 +103,11 @@
     }
         });
         window.financeChartCreated = true;
-    } 
+        showNotification('success', 'Gráfico Carregado', 'Dados financeiros atualizados com sucesso.');
+    }
     catch (error) {
         console.error('Erro ao carregar dados do banco:', error);
+        showNotification('error', 'Erro de Conexão', 'Não foi possível conectar ao servidor.');
       }
     }
   }
